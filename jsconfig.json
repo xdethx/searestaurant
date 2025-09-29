@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",       // burası önemli
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]          // artık src altındaki tüm dosyaları @ ile import edebilirsin
     }
   }
 }
