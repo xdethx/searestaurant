@@ -1,15 +1,28 @@
+"use client";
+
 import { FaFish, FaUtensils, FaClock } from "react-icons/fa";
 
 function Services({ data }) {
+  if (!data) {
+    // Veri yoksa placeholder alanı
+    return (
+      <section className="py-20 bg-white text-center px-4 md:px-0">
+        <div className="max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold mb-4">Loading...</h2>
+          <p className="text-gray-600 text-lg">Content will appear here once data is available.</p>
+        </div>
+      </section>
+    );
+  }
 
-   const icons = [FaFish, FaUtensils, FaClock];
-    return ( 
-   
-           <section className="py-20 bg-white text-center px-4 md:px-0">
+  const icons = [FaFish, FaUtensils, FaClock];
+
+  return (
+    <section className="py-20 bg-white text-center px-4 md:px-0">
       {/* Başlık ve Alt Yazı */}
       <div className="max-w-3xl mx-auto mb-16">
-        <h2 className="text-4xl font-bold mb-4">{data.title}</h2>
-        <p className="text-gray-600 text-lg">{data.subtitle}</p>
+        <h2 className="text-4xl font-bold mb-4">{data.title || "Our Services"}</h2>
+        <p className="text-gray-600 text-lg">{data.subtitle || "Description will appear here."}</p>
       </div>
 
       {/* Kartlar */}
@@ -21,20 +34,21 @@ function Services({ data }) {
               <div className="bg-yellow-100 rounded-2xl p-6 md:p-9 mb-6 inline-flex">
                 <Icon className="text-orange-500 text-3xl md:text-2xl" />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold mb-3">{card.title}</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-3">{card.title || "Title"}</h3>
               <p className="text-gray-600 mb-4 text-base md:text-lg">
-                {card.description}
+                {card.description || "Description not available."}
               </p>
-              <a href="#" className="text-orange-500 font-semibold hover:underline">
-                {card.buttonText}
-              </a>
+              {card.buttonText && (
+                <a href="#" className="text-orange-500 font-semibold hover:underline">
+                  {card.buttonText}
+                </a>
+              )}
             </div>
           );
         })}
       </div>
     </section>
-     );
+  );
 }
 
 export default Services;
-
